@@ -1,0 +1,129 @@
+Firewall Project Documentation
+
+Introduction
+
+In today’s interconnected world, securing sensitive data and services from malicious threats is critical. This project entails the creation of a custom firewall using Python to analyze and filter incoming HTTP requests. The firewall inspects headers and payloads to block malicious patterns, suspicious user agents, and harmful content types, ensuring robust security for web applications.
+
+Objectives
+
+The primary objectives of this project include:
+
+Detecting and blocking malicious payloads embedded in HTTP requests.
+
+Enhancing application security by identifying suspicious headers, patterns, and user agents.
+
+Providing an extensible and customizable solution for web server protection.
+
+System Requirements
+
+Hardware Requirements:
+
+Processor: 2 GHz dual-core CPU or better
+
+Memory: 2 GB RAM or more
+
+Storage: At least 100 MB free disk space
+
+Software Requirements:
+
+Python 3.6 or later
+
+Libraries:
+
+http.server (Standard Python library)
+
+Features and Implementation Details
+
+Key Features:
+
+Malicious Payload Detection:
+
+Scans for patterns such as class.module.classLoader or module.classLoader to detect attacks targeting Java Spring vulnerabilities.
+
+Header Analysis:
+
+Blocks requests with suspicious Content-Type headers like application/x-www-form-urlencoded.
+
+Inspects User-Agent headers to block known malicious or empty values.
+
+Granular Request Filtering:
+
+Supports filtering based on specific query parameters, headers, and payloads.
+
+Customizable Rules:
+
+Easily extend the rule set for other types of malicious activities.
+
+Implementation Details
+
+Script 1: Firewall Server Handler (Source 1)
+
+This script initializes a simple HTTP server and defines the firewall rules for both GET and POST requests.
+
+Core Functionality:
+
+Blocks requests targeting sensitive paths (e.g., /tomcatwar.jsp) and headers containing predefined malicious values.
+
+Sends appropriate HTTP responses (403 for blocked requests, 200 for allowed requests).
+
+Key Components:
+
+BaseHTTPRequestHandler: Handles HTTP requests.
+
+Malicious header detection logic to analyze incoming headers.
+
+Port Configuration:
+
+Runs on localhost at port 8000.
+
+Script 2: Enhanced Firewall (Source 2)
+
+This script expands the detection logic by:
+
+Inspecting HTTP POST payloads for malicious strings.
+
+Analyzing headers for suspicious Content-Type and User-Agent values.
+
+Allowing legitimate requests and rejecting harmful ones with clear response messages.
+
+Key Components:
+
+Pattern Matching: Utilizes Python string operations to detect attack vectors in HTTP payloads.
+
+Comprehensive logging of blocked requests for audit purposes.
+
+Port Configuration:
+
+Operates on port 8080 and listens on all network interfaces.
+
+Infrastructure Overview
+
+The accompanying infrastructure list outlines the resources required for deploying the firewall solution. Ensure the following:
+
+Web server hosting the application must integrate with this firewall server.
+
+Deployment in a secure environment with restricted access to management interfaces.
+
+Network policies configured to allow traffic through only firewall-monitored ports.
+
+Deployment Instructions
+
+Install Python 3.6 or later on the server.
+
+Save the provided Python scripts (Firewall Server Handler and Enhanced Firewall) in appropriate directories.
+
+Start the firewall server using the command:
+
+python3 FIREWALL_T3.py
+
+Configure your web application to route traffic through the firewall.
+
+Monitor logs for any blocked requests to fine-tune detection rules.
+
+Conclusion
+
+This firewall project is a robust and extensible solution for protecting web applications against common threats. Its lightweight implementation and customizable nature make it ideal for deployment in environments where security and efficiency are paramount. Future enhancements could include:
+
+Integration with threat intelligence feeds.
+
+Logging and reporting mechanisms for better incident response.
